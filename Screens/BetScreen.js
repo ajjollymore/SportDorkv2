@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
     timer:{
         width:131,

@@ -1,0 +1,3 @@
+export const INCREASE_CARDS = 'INCREASE_CARDS';
+export const RESET_CARDS = 'RESET_CARDS';
+export const BUTTON_PRESSED = 'BUTTON_PRESSED'

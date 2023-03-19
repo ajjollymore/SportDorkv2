@@ -4,11 +4,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from "@react-navigation/native"
 import Index from './BetScreenIndex';
 import BottomTabs from './Components/BottomTabs';
+import { Provider, useStore } from 'react-redux';
+import store from './redux/store'
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <BottomTabs/>
     </NavigationContainer>
+    </Provider>
   );
 }
 

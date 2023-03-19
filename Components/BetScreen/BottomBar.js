@@ -1,15 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { BUTTON_PRESSED } from '../../redux/actionTypes';
 
 const BottomBar = () => {
+    const dispatch = useDispatch();
   return (
     <View style = {styles.container}>
-        <View style = {styles.buttons}/>
+        <TouchableOpacity onPress={() => {dispatch({type: BUTTON_PRESSED, payload: 2})}}>
+            <View style = {styles.leftButton}/>
+        </TouchableOpacity>
         <View style = {styles.middleButtonContainer}>
             <View style ={styles.middleButtonTop}/>
             <View style = {styles.middlePaneBottom}/>
         </View>
-        <View style = {styles.buttons}/>
+        <TouchableOpacity onPress={() => {dispatch({type: BUTTON_PRESSED, payload: 1})}}>
+            <View style = {styles.rightButton}/>
+        </TouchableOpacity>
     </View>
   )
 }
@@ -24,8 +31,15 @@ const styles = StyleSheet.create({
         height: 100,
         width: 400*0.71
     },
-    buttons:{
+    leftButton:{
         backgroundColor: 'green',
+        alignSelf: 'center',
+        height: 90,
+        width: 90,
+        borderRadius: 100
+    },
+    rightButton:{
+        backgroundColor: 'blue',
         alignSelf: 'center',
         height: 90,
         width: 90,

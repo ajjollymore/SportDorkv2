@@ -8,7 +8,25 @@ import Learn from '../Screens/LearnScreen';
 const BottomTabs = () => {
     const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={
+        {
+            tabBarStyle:{
+                backgroundColor: 'white',
+                marginBottom: 5,
+                borderRadius: 10,
+                shadowOffset:{
+                    width:50,
+                    height:50
+                },
+                shadowRadius: 20,
+                elevation: 10,
+                shadowColor: 'black',
+            },
+        }
+    }
+    sceneContainerStyle ={{backgroundColor: 'white'}}
+    >
         <Tab.Screen name = "Home" component = {HomeScreen}/>
         <Tab.Screen name = "My Bets" component={MyBets}/>
         <Tab.Screen name = "Sports" component={Sports}/>

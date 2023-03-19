@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
             backgroundColor: 'red',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            borderRadius: 20
+            borderRadius: 20,
+            elevation: 7,
         },
         topBar:{
             width: '90%',
