@@ -1,24 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { BUTTON_PRESSED } from '../../redux/actionTypes';
-
+import { BUTTON_PRESSED_ACTION } from '../../redux/Index'
 const BottomBar = () => {
     const dispatch = useDispatch();
-  return (
-    <View style = {styles.container}>
-        <TouchableOpacity onPress={() => {dispatch({type: BUTTON_PRESSED, payload: 2})}}>
-            <View style = {styles.leftButton}/>
-        </TouchableOpacity>
-        <View style = {styles.middleButtonContainer}>
-            <View style ={styles.middleButtonTop}/>
-            <View style = {styles.middlePaneBottom}/>
-        </View>
-        <TouchableOpacity onPress={() => {dispatch({type: BUTTON_PRESSED, payload: 1})}}>
-            <View style = {styles.rightButton}/>
-        </TouchableOpacity>
-    </View>
-  )
+    return (
+      <View style = {styles.container}>
+          <TouchableOpacity onPress={() => {dispatch(BUTTON_PRESSED_ACTION(2))}}>
+              <View style = {styles.leftButton}/>
+          </TouchableOpacity>
+          <View style = {styles.middleButtonContainer}>
+              <View style ={styles.middleButtonTop}/>
+              <View style = {styles.middlePaneBottom}/>
+          </View>
+          <TouchableOpacity onPress={() => {dispatch(BUTTON_PRESSED_ACTION(1))}}>
+              <View style = {styles.rightButton}/>
+          </TouchableOpacity>
+      </View>
+    )
 }
 
 export default BottomBar

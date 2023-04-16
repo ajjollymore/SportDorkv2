@@ -1,3 +1,5 @@
-export const INCREASE_CARDS = 'INCREASE_CARDS';
+export const DECREASE_CARDS = 'DECREASE_CARDS';
 export const RESET_CARDS = 'RESET_CARDS';
-export const BUTTON_PRESSED = 'BUTTON_PRESSED'
+export const BUTTON_PRESSED = 'BUTTON_PRESSED';
+export const SET_BET_AMOUNT = 'SET_BET_AMOUNT';
+export const SET_BET_CHOICE = 'SET_BET_CHOICE';

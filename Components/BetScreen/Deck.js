@@ -5,95 +5,37 @@ import { Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { BUTTON_PRESSED } from '../../redux/actionTypes';
 const Deck = () => {
-    const dispatch = useDispatch();
-    const cardDirStore = useSelector(state => state.isCardAnimate);
-    const position = useRef(new Animated.ValueXY()).current;
-    const { width, height } = Dimensions.get('window');
-const SWIPE_THRESHOLD = 0.25 * width;
-const SWIPE_OUT_DURATION = 250;
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (_, gesture) => {
-        position.setValue({ x: gesture.dx, y: gesture.dy });
-      },
-      onPanResponderRelease: (_, gesture) => {
-        if (gesture.dx > SWIPE_THRESHOLD) {
-          forceSwipe('right');
-        } else if (gesture.dx < -SWIPE_THRESHOLD) {
-          forceSwipe('left');
-        } else {
-          resetPosition();
-        }
-      },
-    })
-  ).current;
-  const forceSwipe = (direction) => {
-    const x = direction === 'right' ? width : -width;
-    Animated.timing(position, {
-      toValue: { x, y: 0 },
-      duration: SWIPE_OUT_DURATION,
-      useNativeDriver: false,
-    }).start(() => onSwipeComplete(direction));
-  };
-
-  const onSwipeComplete = (direction) => {
-    // Do something when the card has been swiped
-    resetPosition();
-  };
-
-  const resetPosition = () => {
-    Animated.spring(position, {
-      toValue: { x: 0, y: 0 },
-      useNativeDriver: false,
-    }).start();
-  };
-  const getCardStyle = () => {
-    const rotate = position.x.interpolate({
-      inputRange: [-width, 0, width],
-      outputRange: ['-60deg', '0deg', '60deg'],
-    });
-    return {
-      ...position.getLayout(),
-      transform: [{ rotate }],
-    };
-  };
-  useEffect(() => {
-    switch(cardDirStore){
-        case 1:
-            forceSwipe('right');
-            break;
-        case 2:
-            forceSwipe('left');
-            break;
-        default:
-            break;
-    }
-    dispatch({type: BUTTON_PRESSED, payload: 0});
-}, [cardDirStore]);
-  return (
-    <View style = {styles.container}>
+  const dispatch = useDispatch();
+  const cardDirStore = useSelector(state => state.isCardAnimate);
+  const { width, height } = Dimensions.get('window');
+  const SWIPE_THRESHOLD = 0.25 * width;
+  const SWIPE_OUT_DURATION = 250;
+  const cards = [
+    {id: 0, bgColor: 'pink'},
+    {id: 1, bgColor: 'gray'},
+    {id: 2, bgColor: 'black'},
+    {id: 3, bgColor: 'red'},
+  ]
+const currentCard = useSelector(state => state.currentCard);
+return (
+  <View style = {styles.container}>
       <View style = {styles.deck}>
-        
-      <View style = {[styles.card1, {transform: [{translateY: 10}, {scaleY: 1.050}, {scaleX: 0.950}]}]}>
-            <Card/>
-        </View>
-
-        <View style = {[styles.card1, {transform: [{translateY: 10}, {scaleY: 1.050}, {scaleX: 0.950}]}]}>
-            <Card/>
-        </View>
-        
-        <View style = {[styles.card1, {transform: [{translateY: 10}, {scaleY: 1.050}, {scaleX: 0.950}]}]}>
-            <Card/>
-        </View>
-
-        <View style = {[styles.card2, {transform: [{scaleY: 1.025}, {translateY: 5}, {scaleX: 0.975}]}]}>
-            <Card/>
-        </View>
-
-        <Animated.View style = {[getCardStyle(),styles.card3]}{...panResponder.panHandlers}>
-            <Card/>
-        </Animated.View>
+        {cards.map((value,index)=>{
+          const scaleAnimValue = useRef([new Animated.Value((1-0.05*(currentCard-index))), new Animated.Value((currentCard*7-(index)*7))]).current
+          useEffect(()=>{
+            (index == 0)? console.log("----------"):console.log();
+            Animated.parallel([
+              Animated.timing(scaleAnimValue[0], {toValue: 1-0.05*(currentCard-index++), duration: 300, useNativeDriver: true}),
+              Animated.timing(scaleAnimValue[1], {toValue: currentCard*7-(index++)*7, duration: 300, useNativeDriver: true}),
+            ]).start()
+            console.log(scaleAnimValue[0],scaleAnimValue[1])
+          }, [currentCard])
+          return(
+          <Animated.View style ={{transform:[{scaleX: scaleAnimValue[0]}, {translateY:scaleAnimValue[1]}],}}>
+            <Card index = {index} data = {value}/>
+          </Animated.View>
+            )
+        })}
       </View>
     </View>
   )
@@ -107,9 +49,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     deck: {
-        backgroundColor: 'grey',
         height: 400,
         width: 400*0.71,
+        marginVertical: 10
     },
     card1:{
         position: 'absolute',

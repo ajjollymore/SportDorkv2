@@ -1,8 +1,8 @@
-import { INCREASE_CARDS, RESET_CARDS, BUTTON_PRESSED } from "./actionTypes";
+import { RESET_CARDS, BUTTON_PRESSED, DECREASE_CARDS,SET_BET_AMOUNT } from "./actionTypes";
 
-export const increaseCardAction = () =>{
+export const decreaseCardAction = () =>{
     return{
-        type: INCREASE_CARDS
+        type: DECREASE_CARDS
     }
 }
 export const resetCardsAction = () => {
@@ -15,4 +15,10 @@ export const BUTTON_PRESSED_ACTION = (parameter) =>{
         type: BUTTON_PRESSED,
         payload: parameter
     }
+}
+export const SET_BET_AMOUNT_ACTION = (parameter) => {
+return{
+    type: SET_BET_AMOUNT,
+    payload: parameter
+}
 }
