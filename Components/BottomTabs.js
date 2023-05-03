@@ -3,7 +3,7 @@ import React from 'react'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import MavGameCards from '../Screens/MavGameCards';
 import HomeScreen from './HomeScreen';
-import MyBets from '../Screens/BetScreen'
+import MajorityMinority from '../Screens/MajorityMinority'
 import Sports from '../Screens/SportsScreen';
 import Learn from '../Screens/LearnScreen';
 import HomeScreenNavigator from './HomeScreenNavigator';
@@ -46,7 +46,7 @@ const BottomTabs = () => {
     sceneContainerStyle ={{backgroundColor: 'white'}}
     >
         <Tab.Screen name = "Home" component = {HomeScreenNavigator}/>
-        <Tab.Screen name = "My Bets" component={MyBets}/>
+        <Tab.Screen name = "My Bets" component={MajorityMinority}/>{/*make PostSwipeBets*/ }
         <Tab.Screen name = "Sports" component={Sports}/>
         <Tab.Screen name = "Learn" component={Learn}/>
     </Tab.Navigator>
