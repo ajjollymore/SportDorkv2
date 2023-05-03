@@ -5,11 +5,13 @@ import { Animated } from 'react-native'
 import { Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { BUTTON_PRESSED, DECREASE_CARDS, INCREASE_CARDS } from '../../redux/actionTypes';
-import { decreaseCardAction } from '../../redux/Index'
+import { decreaseCardAction, SET_BET_CHOICE_ACTION } from '../../redux/Index'
+import { useNavigation } from '@react-navigation/native'
 const Card = (props) => {
-
+  const currentCard = useSelector(state => state.currentCard);
   return (
     <View style = {[styles.container, {backgroundColor: props.data}]}>
+      <View style = {[{width: 400*0.71,height: 380,borderRadius:20, position:'absolute', backgroundColor: 'white', zIndex: (currentCard==props.index)?-1:99, opacity: (currentCard-props.index)*0.05}]}/>
         <View style ={styles.topBar}>
         </View>
         <View style ={styles.image}/>
@@ -18,10 +20,13 @@ const Card = (props) => {
   )
 }
 const cardAnimated = (props) => {
-const cardDirStore = useSelector(state => state.isCardAnimate);
-const currentCard = useSelector(state => state.currentCard);
+  const cardDirStore = useSelector(state => state.isCardAnimate);
+  const currentCard = useSelector(state => state.currentCard);
+  const currentDeck = useSelector(state => state.currentDeck);
+  const userData = useSelector(state => state.decks[currentDeck]);
   const [panResponderEnabled, setPanResponderEnabled] = useState(false);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const { width, height } = Dimensions.get('window');
   const SWIPE_THRESHOLD = 0.25 * width;
   const SWIPE_OUT_DURATION = 400;
@@ -48,17 +53,22 @@ const currentCard = useSelector(state => state.currentCard);
       ).current;
       const forceSwipe = (direction) => {
           const x = direction === 'right' ? width+50 : -width-50;
-          (direction === 'right') ?   
+          if(props.index == 0)
+          navigation.navigate("MajorityMinority")
+            dispatch(decreaseCardAction()); 
+          (direction === 'right') ? dispatch(SET_BET_CHOICE_ACTION(1)): dispatch(SET_BET_CHOICE_ACTION(-1))   
           Animated.timing(position, {
             toValue: { x, y: 0 },
             duration: SWIPE_OUT_DURATION,
             useNativeDriver: false,
-          }).start(() => dispatch(decreaseCardAction()));
+          }).start(() => {onSwipeComplete()});
       };
     
-      const onSwipeComplete = (direction) => {
+      const onSwipeComplete = (index) => {
         // Do something when the card has been swiped
         
+        console.log(userData)
+  
       };
     
       const resetPosition = () => {
@@ -112,7 +122,7 @@ const currentCard = useSelector(state => state.currentCard);
             zIndex: 10
         }}
         />
-        <Card data = {props.data.bgColor}/>
+        <Card data = {props.data.bgColor} index = {props.index}/>
         </Animated.View>
         );
 } 

@@ -8,7 +8,9 @@ const Stack = createStackNavigator();
 const Index = () => {
   return (
         <Stack.Navigator>
+            
             <Stack.Screen name = "BetScreen" component={BetScreen}/>
+
         </Stack.Navigator>
   )
 }

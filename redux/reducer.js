@@ -1,7 +1,7 @@
-import { DECREASE_CARDS, RESET_CARDS, BUTTON_PRESSED, SET_BET_AMOUNT } from "./actionTypes";
+import { DECREASE_CARDS, RESET_CARDS, BUTTON_PRESSED, SET_BET_AMOUNT, SET_BET_CHOICE } from "./actionTypes";
 const initialState ={
     currentDeck: 0,
-    currentCard: 3,
+    currentCard: 4,
     isCardAnimate: 0,
     decks: [
         {
@@ -12,11 +12,32 @@ const initialState ={
             time:"",
             cardData: [{
                 image: "",
-                bottomText: "",
+                bottomText: "Will Gary Trent Jr. Make His Next Shot",
                 betAmount: "",
 
-            },{},{},{}],
-            userData: [0,0,0,0],//yes = 1, no = -1, undecided = 0
+            },
+            {
+            image: "",
+            bottomText: "Will the Raptors win the game",
+            betAmount: "",
+            },
+            {
+            image: "",
+            bottomText: "Will Pascal Siakam make over 6.5 rebounds by end of Q3",
+            betAmount: "",
+        },
+        {
+            image: "",
+            bottomText: "Will the next Field Goal made be a 3-pointer",
+            betAmount: "",
+        },
+        {
+            image: "",
+            bottomText: "Will Jayson Tatum have Over 2.5 assists By End Of Q3",
+            betAmount: "",
+        }],
+            userData: [0,0,0,0,0],//stores users swipe decision || yes = 1, no = -1, undecided = 0
+            betData: [1,-1,0,0,1]
         }
     ]
 }
@@ -44,6 +65,11 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
             } 
+        case SET_BET_CHOICE:
+            const x = state;
+            x.decks[state.currentDeck].userData[4-state.currentCard-1] = action.payload;
+            return x;
+                
         default:
             return state
     }

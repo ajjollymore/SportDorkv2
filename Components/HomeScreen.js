@@ -16,8 +16,8 @@ const AvailibleBets = [
 ];
 const LeagueData = [
     {id: 0, image: require('../assets/leagueImages/nba.png'),name:'NBA'},
-    {id: 1, image: require('../assets/leagueImages/nhl.png'),name:'NHL'},
-    {id: 2, image: require('../assets/leagueImages/mlb.png'),name:'MLB'},
+    {id: 1, image: require('../assets/leagueImages/mlb.png'),name:'MLB'},
+    {id: 2, image: require('../assets/leagueImages/nhl.png'),name:'NHL'},
     {id: 3, image: require('../assets/leagueImages/nfl.png'),name:'NFL'},
     {id: 4, image: require('../assets/leagueImages/pga.png'),name:'PGA'},
     {id: 5, image: require('../assets/leagueImages/horse.png'),name:'HORSE RACING'},

@@ -1,4 +1,4 @@
-import { RESET_CARDS, BUTTON_PRESSED, DECREASE_CARDS,SET_BET_AMOUNT } from "./actionTypes";
+import { RESET_CARDS, BUTTON_PRESSED, DECREASE_CARDS,SET_BET_AMOUNT, SET_BET_CHOICE } from "./actionTypes";
 
 export const decreaseCardAction = () =>{
     return{
@@ -21,4 +21,10 @@ return{
     type: SET_BET_AMOUNT,
     payload: parameter
 }
+}
+export const SET_BET_CHOICE_ACTION = (parameter) => {
+    return{
+        type: SET_BET_CHOICE,
+        payload: parameter
+    }
 }

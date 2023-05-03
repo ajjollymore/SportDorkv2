@@ -2,37 +2,59 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { FlatList } from 'react-native'
+import { useSelector } from 'react-redux'
 
 const MyBets = () => {
+  const newBet = useSelector(state=>state.decks[0])
+  
   const decks = [{
-    id: 0,
+    id: 2,
     userData: [1,-1,-1,1,1],
-    betData: [1,-1,0,0,-1],
+    betData: [1,-1,-1,0,-1],
     betamt: 3.00
   },
   {
-    id: 1,
-    userData: [1,-1,-1,1,1],
-    betData: [1,-1,0,0,-1],
+    id: 3,
+    userData: [1,-1,1,-1,1],
+    betData: [1,-1,-1,0,-1],
     betamt: 4.00
   },
   {
-    id: 2,
-    userData: [1,-1,-1,1,1],
-    betData: [1,-1,0,0,-1],
+    id: 4,
+    userData: [1,-1,1,1,1],
+    betData: [1,-1,0,1,-1],
     betamt: 2.25
   },
   {
-    id: 3,
+    id: 5,
     userData: [1,-1,-1,1,1],
-    betData: [1,-1,0,0,-1],
+    betData: [1,-1,0,-1,0],
     betamt: 2.25
   }]
+  decks.unshift(newBet);
   const topElementRadius = (index) => {
     out = {}
     if(index ==0) out = {borderTopStartRadius: 10, borderTopEndRadius: 10}
     if(index == (decks.length -1)) out = {borderBottomStartRadius: 10, borderBottomEndRadius: 10}
     return out
+  }
+  const getBarStatus = (index) =>{
+    const userData = decks[index].userData;
+    const betData = decks[index].betData;
+    let redamt = 0;
+    let greenamt = 0;
+    for(let i = 0; i < 5;i++){
+    if(Math.abs(userData[i]+betData[i])== 2){
+      greenamt++;
+    }else if(Math.abs(userData[i]+betData[i]) == 0){
+      redamt++;
+    }}
+    return(
+      <View style = {{width: 200, height: 20, marginLeft: 5, borderRadius: 5, flexDirection: 'row', backgroundColor:'#CECECE'}}>
+        <View style = {{height: 20, width: 40*greenamt, backgroundColor:'#4EB100', borderBottomLeftRadius: 5,borderTopLeftRadius: 5}}/>
+        <View style = {{height: 20, width: 40*redamt, backgroundColor:'#F6423A', position: 'absolute', right: 0, borderBottomRightRadius: 5,borderTopRightRadius: 5}}/>
+      </View>
+    )
   }
   const BetSingleCell= (props) => {
     return(
@@ -44,10 +66,7 @@ const MyBets = () => {
                 <Text style = {{textDecorationLine: 'underline'}}>Details</Text>
                 </TouchableOpacity>
               </View>
-
-          <View style = {{width: 200, height: 20, backgroundColor: 'red', marginLeft: 5, borderRadius: 5}}>
-
-          </View>
+              {getBarStatus(props.index)}
           <View style = {[{backgroundColor: 'black', opacity: 0.3, width: "90%", position: 'absolute', bottom: 0, alignSelf: 'center'}, (props.index == decks.length-1)? {height:0}:{height:1}]}/>
       </View>
     </View>
@@ -67,7 +86,7 @@ const MyBets = () => {
         <View style = {styles.leftBox}>
         <FlatList
         data={decks}
-        renderItem = {({item}) => <BetSingleCell index = {item.id} data ={item}/>}
+        renderItem = {({item,index}) => <BetSingleCell index = {index} data ={item}/>}
         keyExtractor = {item => item.id}
         />
         </View>

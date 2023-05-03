@@ -14,7 +14,8 @@ const Deck = () => {
     {id: 0, bgColor: 'pink'},
     {id: 1, bgColor: 'gray'},
     {id: 2, bgColor: 'black'},
-    {id: 3, bgColor: 'red'},
+    {id: 3, bgColor: 'cyan'},
+    {id:4, bgColor: 'red'}
   ]
 const currentCard = useSelector(state => state.currentCard);
 return (
@@ -23,16 +24,15 @@ return (
         {cards.map((value,index)=>{
           const scaleAnimValue = useRef([new Animated.Value((1-0.05*(currentCard-index))), new Animated.Value((currentCard*7-(index)*7))]).current
           useEffect(()=>{
-            (index == 0)? console.log("----------"):console.log();
             Animated.parallel([
               Animated.timing(scaleAnimValue[0], {toValue: 1-0.05*(currentCard-index++), duration: 300, useNativeDriver: true}),
               Animated.timing(scaleAnimValue[1], {toValue: currentCard*7-(index++)*7, duration: 300, useNativeDriver: true}),
             ]).start()
-            console.log(scaleAnimValue[0],scaleAnimValue[1])
           }, [currentCard])
           return(
-          <Animated.View style ={{transform:[{scaleX: scaleAnimValue[0]}, {translateY:scaleAnimValue[1]}],}}>
-            <Card index = {index} data = {value}/>
+          <Animated.View style ={{transform:[{scaleX: (currentCard-index <3)?scaleAnimValue[0]:0}, {translateY:(currentCard-index < 3)?scaleAnimValue[1]:0}]}}>
+            <Card index = {index} data = {value}>
+            </Card>
           </Animated.View>
             )
         })}
