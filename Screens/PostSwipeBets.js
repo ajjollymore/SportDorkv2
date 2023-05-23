@@ -3,12 +3,12 @@ import React from 'react'
 import TopHeader from '../Components/MyBets/TopHeader'
 import MyBets from '../Components/MyBets/MyBets'
 import CurrentStatus from '../Components/MyBets/CurrentStatus'
-const BetScreen = () => {
+const BetScreen = ({route,navigation}) => {
   return (
     <SafeAreaView style = {styles.container}>
-      <TopHeader/>
+      <TopHeader game ={route.params.leagueId}/>
       <CurrentStatus/>
-      <MyBets/>
+      <MyBets game={route.params.leagueId}/>
     </SafeAreaView>
   )
 }

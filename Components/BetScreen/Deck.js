@@ -4,7 +4,7 @@ import Card from './Card'
 import { Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { BUTTON_PRESSED } from '../../redux/actionTypes';
-const Deck = () => {
+const Deck = ({setOpacity}) => {
   const dispatch = useDispatch();
   const cardDirStore = useSelector(state => state.isCardAnimate);
   const { width, height } = Dimensions.get('window');
@@ -31,7 +31,7 @@ return (
           }, [currentCard])
           return(
           <Animated.View style ={{transform:[{scaleX: (currentCard-index <3)?scaleAnimValue[0]:0}, {translateY:(currentCard-index < 3)?scaleAnimValue[1]:0}]}}>
-            <Card index = {index} data = {value}>
+            <Card index = {index} data = {value} setOpacity = {setOpacity}>
             </Card>
           </Animated.View>
             )
@@ -45,13 +45,14 @@ export default Deck
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
+      marginRight: 75,
+      marginTop: 0
     },
     deck: {
         height: 400,
         width: 400*0.71,
-        marginVertical: 10
+        marginVertical: 10,
+        marginLeft: 30
     },
     card1:{
         position: 'absolute',

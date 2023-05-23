@@ -27,7 +27,6 @@ export default BetCountdown
 
 const styles = StyleSheet.create({
     timer:{
-        marginTop: 3,
         width:131,
         height: 51,
         backgroundColor: 'black',

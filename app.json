@@ -11,6 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "androidStatusBar":{
+      "backgroundColor":"#483078",
+      "translucent":false
+    },
     "assetBundlePatterns": [
       "**/*",
       "./assets/Fonts/**"
@@ -22,10 +26,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jjalex.SportDork"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "681c4fa0-78cc-4a60-b0fc-1eab18014ef3"
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
+import { LogBox, StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from "@react-navigation/native"
 import BottomTabs from './Components/BottomTabs';
 import { Provider, useStore } from 'react-redux';
@@ -7,6 +7,7 @@ import store from './redux/store'
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading'
 export default function App() {
+  LogBox.ignoreAllLogs()
   let [fontsLoaded] = useFonts({ 'scoreboard': require('./assets/fonts/scoreboard.ttf') })
   if (!fontsLoaded) {
     return (
