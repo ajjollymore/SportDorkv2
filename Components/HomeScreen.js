@@ -42,7 +42,7 @@ const TopBar = ({value}) => {
                     <Text style = {{fontFamily: 'Montserrat_400Regular', alignSelf: 'center', marginLeft: 10}}>{value.teams[1]}</Text>
                     <Text style = {{fontFamily: 'Montserrat_400Regular', alignSelf: 'center', position: 'absolute', right: 0, fontWeight: "bold"}}>{value.score[1]}</Text>
                 </View>
-                <Text style ={{fontFamily: 'Montserrat_400Regular', alignSelf: 'baseline', marginLeft: 40, fontSize: 13, color: '#6d6d6d'}}>Q2 1:04</Text>
+                <Text style ={{fontFamily: 'Montserrat_400Regular', alignSelf: 'baseline', marginLeft: 40, fontSize: 13, color: '#6d6d6d'}}>{(value.time)?value.time:"Q2 1:04"}</Text>
             </View>
             <View style = {{alignSelf: 'center', marginLeft: 30}}>
             </View>
@@ -89,7 +89,7 @@ const LeagueCell = ({index,name}) => {
 const LeaguesList = () => {
     
     return (
-            <View style = {{height: 370,alignSelf: 'center'}}>
+            <View style = {{height: 400,alignSelf: 'center'}}>
 
             <FlatList
             data={LeagueData}

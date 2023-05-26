@@ -67,7 +67,7 @@ const MyBets = ({game}) => {
         <View style = {[{ justifyContent: 'center',width: 100,height: 75, backgroundColor: 'white', marginVertical: 0.5},topElementRadius(props.index)]}>
           <View style = {{flexDirection: 'row', alignItems: 'center'}}>
           <Text style = {{margin: 5, fontFamily: 'Montserrat_600SemiBold'}}>$1.00</Text>
-          <Text style = {[{margin: 5, marginLeft: 10, fontFamily: 'Montserrat_600SemiBold'}, (1+(redamt*0.22-greenamt*0.22) > 0.99)? {color: '#4EB100'}: {color: '#F6423A'}]}>{`${(1+(redamt*0.22-greenamt*0.22)).toLocaleString(undefined, {style: 'currency',currency:'USD'})}`}</Text>
+          <Text style = {[{margin: 5, marginLeft: 10, fontFamily: 'Montserrat_600SemiBold'}, {color: '#4EB100'} ]}>{`${(1+(redamt*0.22-greenamt*0.22)).toLocaleString(undefined, {style: 'currency',currency:'USD'})}`}</Text>
           </View>
           <View style ={[{backgroundColor: 'black', opacity: 0.3, width:"90%",position:'absolute', bottom: 0, alignSelf: 'center'},(props.index == decks.length-1)? {height:0}:{height:1}]}/>
         </View>
@@ -89,6 +89,7 @@ const MyBets = ({game}) => {
           <Text style ={{right: 0, position: 'absolute', fontSize:10.5, fontFamily: 'Montserrat_600SemiBold', color: '#9E9E9E9E', fontWeight: 'bold'}}>Return</Text>
       </View>
         </View>
+        {/*I am so sorry if anyone ever develops this and it needs to be scrolling... this will need a redesign */}
       <View style = {[{flexDirection: 'row'}]}>
         <View style = {styles.leftBox}>
         <FlatList

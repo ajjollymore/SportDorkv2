@@ -41,7 +41,8 @@ const initialState ={
         }],
             userData: [0,0,0,0,0],//stores users swipe decision || yes = 1, no = -1, undecided = 0
             betData: [1,0,-1,0,0],
-            status: ['Yes','TOR 80 - BOS 78', 'Layup', '5','TOR 80 - BOS 78']
+            status: ['Yes','TOR 80 - BOS 78', 'Layup', '5','TOR 80 - BOS 78'],
+            oddsData:[[2.6,1.82],[1.19,2.55],[3.91,1.19],[1.02,2.05],[3.04,1.49], [0.25,2.21]]//[[y,n],[y,n],...]
         },
         {//Heat vs Jazz
             id: 1,
@@ -51,7 +52,7 @@ const initialState ={
             score: [35,30],
             teams: ["MIA Heat","UTA Jazz"],
             teamLogos: [require('../assets/leagueImages/NBA/Miami_Heat.png'),require('../assets/leagueImages/NBA/UTAJazz.png')],
-            time:"Q1 12:00",
+            time:"Q2 9:21",
             leagueImg: require('../assets/leagueImages/nba.png'),
             cardData: [{
                 image: require('../assets/Cards/NBA/1005.png'),
@@ -80,7 +81,8 @@ const initialState ={
             betAmount: "",
         }],
             userData: [0,0,0,0,0],//stores users swipe decision || yes = 1, no = -1, undecided = 0
-            betData: [1,1,1,1,1]
+            betData: [1,1,1,1,1],
+            oddsData:[[2.09,1.79],[2.24,1.9],[1.13,3.28],[1.04,1.16],[1.15,2.11], [0.25,2.21]]
         },
         {//Patriots vs Cowboys
             id: 2,
@@ -119,7 +121,8 @@ const initialState ={
             betAmount: "",
         }],
             userData: [0,0,0,0,0],//stores users swipe decision || yes = 1, no = -1, undecided = 0
-            betData: [1,0,0,1,1]
+            betData: [1,0,0,1,1],
+            oddsData:[[3.71,1.98],[3.33,1.66],[1.26,2.97],[3.98,1.44],[2.25,1.78], [0.25,2.21]]
         },
         {//PLACEHOLDER, Jays vs Astros
             id: 3,
@@ -129,7 +132,7 @@ const initialState ={
             teams: ["TOR Blue Jays","HOU Astros"],
             teamLogos: [require('../assets/leagueImages/NBA/TORBluejays.png'),require('../assets/leagueImages/NBA/HOUAstros.png')],
             sport: "",
-            time:"Top 3rd",
+            time:"Final",
             leagueImg: require('../assets/leagueImages/mlb.png'),
             cardData: [{
                 image: require('../assets/Cards/NBA/GaryTrent.jpg'),
@@ -655,7 +658,7 @@ const initialState ={
             teams: ["TB Buccaneers","CIN Bengals"],
             teamLogos: [require('../assets/leagueImages/NBA/TB.png'),require('../assets/leagueImages/NBA/CIN.jpeg')],
             sport: "",
-            time:"Q1 1:00",
+            time:"Final",
             leagueImg: require('../assets/leagueImages/nfl.png'),
             cardData: [{
                 image: require('../assets/Cards/NBA/GaryTrent.jpg'),
@@ -695,7 +698,7 @@ const initialState ={
             teams: ["LV Raiders","LA Chargers"],
             teamLogos: [require('../assets/leagueImages/NBA/LV.png'),require('../assets/leagueImages/NBA/LA.png')],
             sport: "",
-            time:"Q3 1:02",
+            time:"Final",
             leagueImg: require('../assets/leagueImages/nfl.png'),
             cardData: [{
                 image: require('../assets/Cards/NBA/GaryTrent.jpg'),
@@ -735,7 +738,7 @@ const initialState ={
             teams: ["DEN Nuggets","LA Lakers"],
             teamLogos: [require('../assets/leagueImages/NBA/DEN.png'),require('../assets/leagueImages/NBA/LAL.png')],
             sport: "",
-            time:"Q1 2:10",
+            time:"Final",
             leagueImg: require('../assets/leagueImages/nba.png'),
             cardData: [{
                 image: require('../assets/Cards/NBA/GaryTrent.jpg'),
