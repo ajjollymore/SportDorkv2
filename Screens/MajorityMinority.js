@@ -100,7 +100,7 @@ if(!fontsLoaded){
             </View>
         </View>
       </View>
-      <View style = {{position: 'absolute', backgroundColor: 'white', width: 340, height: 83*5, top: 105, left: 25, borderRadius: 25,elevation:15,zIndex: -1}}></View>
+      <View style = {{position: 'absolute', width: 340, height: 83*5, top: 105, left: 10, borderRadius: 25,elevation:15,zIndex: -1}}></View>
       <FlatList 
       data={refData[0]}
       renderItem ={({item}) => <MajoritySingleCell index = {item.id} data = {item}/>}
